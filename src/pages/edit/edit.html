@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="hdGreen">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+    <ion-title text-center><h3 color="hdBrown">{{ pageTitle }}</h3></ion-title>
+   </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+ 
+    <ion-item>
+      <ion-select placeholder="select ingredient" [(ngModel)]="selectedItem" [selectOptions]="sOptions">
+        <ion-option *ngFor="let ingredient of selectedDonut.ingredients, let i = index" [value]="ingredient.item">
+          {{ ingredient.item }}  --  {{ingredient.quantity }}<span *ngIf="ingredient.units !== ingredient.item"> {{ ingredient.units }}</span>
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" placeholder="new quantity" [(ngModel)]="newQuantity"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines text-center>
+      <button ion-button full block large color="hdBrown"(click)="updateRecipe(newQuantity)"><b color="hdGreen">Update recipe</b></button>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>
+
+<style>
+  ion-select {
+    max-width: 100% !important;
+  }
+</style>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="hdGreen">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+    <ion-title text-wrap><h4 color="hdBrown">{{ pageTitle }}</h4></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let ingred of selectedDonut.ingredients, let i = index">
+      <ion-row>
+        <ion-col width-50 text-left>
+          <b color="hdBrown">{{ ingred.item }}</b>
+        </ion-col>
+        <ion-col width-50 text-right>
+          {{ myQuantity[i] }}<span *ngIf="ingred.item !== ingred.units">&nbsp;{{ ingred.units }}</span>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
