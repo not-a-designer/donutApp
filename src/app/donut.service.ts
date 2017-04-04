@@ -219,10 +219,16 @@ export class DonutService {
 
     return this.DONUT_LIST[idx].donutType;
   }
+  addType(t: string) {
+    this.DONUT_TYPES.push(t);
+  }
   
 
   getFlavor(idx: number): string {
     return this.DONUT_LIST[idx].donutFlavor;
+  }
+  addFlavor(f: string) {
+    this.DONUT_FLAVORS.push(f);
   }
 
   updateQuantity(d: any, i: string, newQ: number) {

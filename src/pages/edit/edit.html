@@ -14,7 +14,7 @@
     <ion-item>
       <ion-select placeholder="select ingredient" [(ngModel)]="selectedItem" [selectOptions]="sOptions">
         <ion-option *ngFor="let ingredient of selectedDonut.ingredients, let i = index" [value]="ingredient.item">
-          {{ ingredient.item }}  --  {{ingredient.quantity }}<span *ngIf="ingredient.units !== ingredient.item"> {{ ingredient.units }}</span>
+          <b>{{ ingredient.item }}</b>  --  {{ingredient.quantity }}<span *ngIf="ingredient.units !== ingredient.item"> {{ ingredient.units }}</span>
         </ion-option>
       </ion-select>
     </ion-item>

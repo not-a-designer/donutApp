@@ -10,16 +10,16 @@
 <ion-content>
   <ion-list text-center>
     <ion-item>
-      <ion-select [(ngModel)]="newDonut.donutType" placeholder="Donut type" style="min-width: 100% !important;" [selectOptions]="tOptions">
+      <ion-select [(ngModel)]="newDonut.donutType" placeholder="Donut type" style="min-width: 100% !important;" [selectOptions]="tOptions" (ionChange)="newDonut.donutType === 'addType' ? showNewTypeAlert() : ''">
         <ion-option *ngFor="let myType of donut.DONUT_TYPES">{{ myType }}</ion-option>
-        <ion-option disabled value="addType">Add new type...</ion-option>
+        <ion-option value="addType">Add new type...</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-select [(ngModel)]="newDonut.donutFlavor" placeholder="Donut flavor" style="min-width: 100% !important;" [selectOptions]="fOptions">
+      <ion-select [(ngModel)]="newDonut.donutFlavor" placeholder="Donut flavor" style="min-width: 100% !important;" [selectOptions]="fOptions" (ionChange)="newDonut.donutFlavor === 'addFlavor' ? showNewFlavorAlert() : ''">
         <ion-option *ngFor="let myFlavor of donut.DONUT_FLAVORS">{{ myFlavor }}</ion-option>
-        <ion-option disabled value="addFlavor">Add new flavor...</ion-option>
+        <ion-option value="addFlavor">Add new flavor...</ion-option>
       </ion-select>
     </ion-item>
 
@@ -41,7 +41,7 @@
       </ion-item>
     
     <ion-item no-lines>
-      <button ion-button padding color="hdBrown" (click)="addIngredient()"><p color="hdGreen">+ add ingredient</p></button>
+      <button ion-button padding large color="hdBrown" (click)="addIngredient()"><p color="hdGreen">+ add ingredient</p></button>
     </ion-item>
   </ion-list>
   

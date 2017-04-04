@@ -31,7 +31,7 @@ export class AddPage {
     this.fOptions = { title: 'select new flavor' };
 
     this.newDonut = {
-      donutType: '', donutFlavor: '', ingredients: []
+      donutType: 'none', donutFlavor: 'none', ingredients: []
     };
   }
 
@@ -39,12 +39,110 @@ export class AddPage {
     this.navCtrl.pop(AddPage);
   }
 
-  setType(t: string) {
-    this.newDonut.donutType = t;
+  showNewTypeAlert() {
+    this.alertCtrl.create({
+      title: 'New Type',
+      inputs: [{
+        name: 'newType',
+        placeholder: 'new type'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('cancel clicked');
+        }
+      }, {
+        text: 'Add',
+        handler: (data) => {
+          let counter = 0;
+          if (data.newType !== '' && isNaN(data.newType)) {
+
+            for (let myType of this.donut.DONUT_TYPES) {
+              if (data.newType.toLowerCase() === myType.toLowerCase()) {
+                counter++;
+              }
+            }
+            let stringOut = this.toProperCase(data.newType);
+            if (counter === 0) {
+              this.donut.addType(stringOut);
+              this.newDonut.donutType = stringOut;
+              this.toastCtrl.create({
+                message: 'SUCCESS: \"' + stringOut + '\" created',
+                duration: 3000,
+                position: 'bottom'
+              }).present();
+
+            } else {
+              this.toastCtrl.create({
+                message: 'ERROR: \"' + stringOut + '\" already exists',
+                duration: 3000,
+                position: 'bottom'
+              }).present();
+            }
+          } else {
+            this.toastCtrl.create({
+              message: 'ERROR: enter a non-numeric type',
+              duration: 3000,
+              position: 'bottom'
+            }).present();
+          }
+        }
+      }]
+    }).present();
   }
 
-  setFlavor(f: string) {
-    this.newDonut.donutFlavor = f;
+  showNewFlavorAlert() {
+    this.alertCtrl.create({
+      title: 'New Flavor',
+      inputs: [{
+        name: 'newFlavor',
+        placeholder: 'new flavor'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('cancel clicked');
+        }
+      }, {
+        text: 'Add',
+        handler: (data) => {
+          let counter = 0;
+          if (data.newFlavor !== '' && isNaN(data.newFlavor)) {      //flavor not empty and not a number
+
+            for (let myFlavor of this.donut.DONUT_FLAVORS) {
+              if (data.newFlavor.toLowerCase() === myFlavor.toLowerCase()) {
+                counter++;
+              }
+            }
+            let stringOut = this.toProperCase(data.newFlavor);
+            if (counter === 0) {
+              this.donut.addFlavor(stringOut);
+              this.newDonut.donutFlavor = stringOut;
+              this.toastCtrl.create({
+                message: 'SUCCESS: \"' + stringOut + '\" created',
+                duration: 3000,
+                position: 'bottom'
+              }).present();
+
+            } else {
+              this.toastCtrl.create({
+                message: 'ERROR: \"' + stringOut + '\" already exists',
+                duration: 3000,
+                position: 'bottom'
+              }).present();
+            }
+          } else {
+            this.toastCtrl.create({
+              message: 'ERROR: enter a non-numeric flavor',
+              duration: 3000,
+              position: 'bottom'
+            }).present();
+          }
+        }
+      }]
+    }).present();
   }
 
   toProperCase(s: string): string {
