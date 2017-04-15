@@ -8,7 +8,9 @@
 </ion-header>
 
 <ion-content>
+
   <ion-list text-center>
+
     <ion-item>
       <ion-select [(ngModel)]="newDonut.donutType" placeholder="Donut type" style="min-width: 100% !important;" [selectOptions]="tOptions" (ionChange)="newDonut.donutType === 'addType' ? showNewTypeAlert() : ''">
         <ion-option *ngFor="let myType of donut.DONUT_TYPES">{{ myType }}</ion-option>

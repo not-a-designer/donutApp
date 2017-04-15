@@ -160,7 +160,11 @@ export class AddPage {
     this.alertCtrl.create({
       title: 'Add ingredient',
       inputs: [{
+        name: 't',
+        placeholder: 'dry, wet, fat, yeast, milk, sugar, eggs'
+      }, {
         type: 'number',
+        min: 0,
         name: 'q',
         placeholder: 'quantity'
       }, {
@@ -180,11 +184,11 @@ export class AddPage {
         text: 'Add',
         handler: (data) => {
 
-          if (data.q !== '' && data.u !== '' && data.i !== '') {           //all fields entered
+          if (data.t !== '' && data.q !== '' && data.u !== '' && data.i !== '') {           //all fields entered
 
             if (data.q > 0) {                                               //make sure quantity is positive
 
-              let newIngredient = new Ingredient(data.q, data.u.toLowerCase(), this.toProperCase(data.i));
+              let newIngredient = new Ingredient(data.t, data.q, data.u.toLowerCase(), this.toProperCase(data.i));
               this.newDonut.ingredients.push(newIngredient);
 
               this.toastCtrl.create({
@@ -224,23 +228,51 @@ export class AddPage {
     }).present();
   }
 
-
   addToDonutList() {
+    
     if (this.newDonut.donutType !== '' && this.newDonut.donutFlavor !== '' && this.newDonut.ingredients.length >0) {  //has type flavor and ingredients
-      this.donut.DONUT_LIST.push(this.newDonut);
-      this.dismiss();
-      this.toastCtrl.create({
-        message: 'SUCCESS: ' + this.newDonut.donutType + ' ' + this.newDonut.donutFlavor + ' was created',
-        duration: 3000,
-        position: 'bottom'
-      }).present();
+
+      if (this.isNewDonut()) {
+
+        this.donut.DONUT_LIST.push(this.newDonut);
+        this.dismiss();
+        this.toastCtrl.create({
+          message: 'SUCCESS: ' + this.newDonut.donutType + ' ' + this.newDonut.donutFlavor + ' was created',
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+
+      } else {
+        let myDonutTitle = this.newDonut.donutType + ' ' + this.newDonut.donutFlavor;
+        this.alertCtrl.create({
+          title: 'Error',
+          message: 'The ' + myDonutTitle + ' already exists',
+          buttons: ['OK']
+        });  
+      }
+
     } else {
       this.toastCtrl.create({
-        message: 'ERROR: Enter all fields',
-        duration: 3000,
-        position: 'bottom'
-      }).present();
+          message: 'ERROR: Enter all fields',
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+      
     }
+  }
+
+ isNewDonut(): boolean {
+    let counter: number = 0;
+    console.log('counter = ' + counter);
+
+    for (let myDonut of this.donut.DONUT_LIST) { 
+      if (myDonut.donutType.toLowerCase() === this.newDonut.donutType.toLowerCase() && myDonut.donutFlavor.toLowerCase() === this.newDonut.donutFlavor.toLowerCase()) {
+        counter++;
+      }
+      console.log('counter = ' + counter);
+    }
+
+    return counter === 0 ? true : false;
   }
   
 }

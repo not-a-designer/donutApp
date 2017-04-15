@@ -14,6 +14,8 @@ export class RecipePage {
   public pageTitle: string;
   public batch: number;
   public myQuantity: number[];
+  public myTypes: string[];
+  public myYield: number;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,9 +24,25 @@ export class RecipePage {
     this.selectedDonut = this.navParams.get('selectedDonut');
     this.batch = this.navParams.get('batchSize');
     this.myQuantity = [];
+    this.myTypes = [];
+
+    for (let myIng of this.selectedDonut.ingredients) {  //for each ingredient in selectedDonut
+      
+      this.myTypes.push(myIng.type);
+      if (this.myTypes.length > 1) {
+        for(let i = 0; i < this.myTypes.length; i++) {
+          if(this.myTypes[i] === this.myTypes[i-1]){
+            this.myTypes.splice(i, 1); 
+          }
+        } 
+      }
+    }
+
+    this.myYield = this.batch * this.donut.FULL_YIELD;
 
     console.log('navParam -selectedDonut- = ' + this.selectedDonut);
     console.log('navParam -batchSize- = ' + this.batch);
+    console.log('myTypes = ' + this.myTypes);
 
     this.pageTitle = this.selectedDonut.donutType + ' ' + this.selectedDonut.donutFlavor;
 
