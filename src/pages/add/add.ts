@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
-import {NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 
 import { DonutService, Ingredient } from '../../app/donut.service';
 
-
+@IonicPage()
 @Component({
   selector: 'page-add',
   templateUrl: 'add.html'
 })
 
-export class AddPage {
+export class Add {
  
   public newDonut: any;
   public newType: string;
@@ -36,7 +36,7 @@ export class AddPage {
   }
 
   dismiss() {
-    this.navCtrl.pop(AddPage);
+    this.navCtrl.pop('Add');
   }
 
   showNewTypeAlert() {

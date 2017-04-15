@@ -8,7 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //import { Database } from './database.service';
 import { DonutService } from './donut.service';
 
-import { Page1 } from '../pages/page1/page1';
+//import { Page1 } from '../pages/page1/page1';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { Page1 } from '../pages/page1/page1';
 })
 export class MyApp {
 
-  rootPage: any = Page1;
+  rootPage:string = "Page1";
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 

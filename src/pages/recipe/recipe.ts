@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DonutService } from '../../app/donut.service';
 
+
+@IonicPage()
 @Component({
   selector: 'page-recipe',
   templateUrl: 'recipe.html'
 })
-export class RecipePage {
+export class Recipe {
 
   public selectedDonut: any;
   public pageTitle: string;
@@ -57,6 +59,6 @@ export class RecipePage {
   } 
 
   dismiss() {
-    this.navCtrl.pop(RecipePage);
+    this.navCtrl.pop('Recipe');
   }
 }

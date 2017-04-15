@@ -13,19 +13,19 @@ import { MyApp } from './app.component';
 
 import { DonutService } from './donut.service';
 
-import { Page1 } from '../pages/page1/page1';
+/*import { Page1 } from '../pages/page1/page1';
 import { RecipePage } from '../pages/recipe/recipe';
 import { EditPage } from '../pages/edit/edit';
-import { AddPage } from '../pages/add/add';
+import { AddPage } from '../pages/add/add';*/
 
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp/*,
     Page1,
     RecipePage,
     EditPage,
-    AddPage
+    AddPage*/
   ],
   imports: [
     BrowserModule,
@@ -33,11 +33,11 @@ import { AddPage } from '../pages/add/add';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyApp/*,
     Page1,
     RecipePage,
     EditPage,
-    AddPage
+    AddPage*/
   ],
   providers: [
     StatusBar,

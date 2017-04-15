@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DonutService } from '../../app/donut.service';
 
 
+@IonicPage()
 @Component({
   selector: 'page-edit',
   templateUrl: 'edit.html'
 })
-export class EditPage {
+export class Edit {
 
   public selectedDonut: any;
   public selectedIdx: number;
@@ -49,6 +50,6 @@ export class EditPage {
   }
 
   dismiss() {
-    this.navCtrl.pop(EditPage);
+    this.navCtrl.pop('Edit');
   }
 }

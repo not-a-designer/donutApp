@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 
-import { Platform, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, Platform, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { DonutService } from '../../app/donut.service';
 
-import { RecipePage } from '../recipe/recipe';
-import { EditPage } from '../edit/edit';
-import { AddPage } from '../add/add';
+/*import { Recipe } from '../recipe/recipe';
+import { Edit } from '../edit/edit';
+import { Add } from '../add/add';*/
 
+@IonicPage()
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html'
@@ -79,7 +80,7 @@ export class Page1 {
         text: 'Continue',
         handler: (data) => {
           if (data.password === this.donut.SECURITY) {
-            this.navCtrl.push(EditPage, { selectedDonut: this.donut.DONUT_LIST[idx] });
+            this.navCtrl.push('Edit', { selectedDonut: this.donut.DONUT_LIST[idx] });
           }
         }
       }]
@@ -111,7 +112,7 @@ export class Page1 {
     console.log('batchCount['+ idx + '] = ' + this.batchCount[idx]);
     if (this.batchCount[idx] > 0) {
 
-      this.navCtrl.push(RecipePage, {
+      this.navCtrl.push('Recipe', {
         selectedDonut: this.donut.DONUT_LIST[idx],
         batchSize: this.batchCount[idx]
       });
@@ -147,7 +148,7 @@ export class Page1 {
         text: 'Continue',
         handler: (data) => {
           if (data.password === this.donut.SECURITY) {
-            this.navCtrl.push(AddPage);
+            this.navCtrl.push('Add');
           }
         }
       }]
